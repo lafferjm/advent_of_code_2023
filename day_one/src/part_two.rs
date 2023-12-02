@@ -1,7 +1,22 @@
 use crate::input_utils;
 
+fn replace_words(line: &String) -> String {
+    let new_string = line
+        .replace("one", "o1e")
+        .replace("two", "t2o")
+        .replace("three", "t3e")
+        .replace("four", "f4r")
+        .replace("five", "f5e")
+        .replace("six", "s6x")
+        .replace("seven", "s7n")
+        .replace("eight", "e8t")
+        .replace("nine", "n9e");
+    
+    return new_string;
+}
+
 fn get_number(line: &String) -> i32 {
-    let digits: Vec<char> = line.chars().filter(|c| c.is_digit(10)).collect();
+    let digits: Vec<char> = replace_words(&line).chars().filter(|c| c.is_digit(10)).collect();
     let first_digit = digits[0];
     let second_digit;
 
