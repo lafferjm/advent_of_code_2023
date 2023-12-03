@@ -50,4 +50,25 @@ impl Game {
 
         !round_results.iter().any(|x| *x == false)
     }
+
+    pub fn round_powers(turns: &str) -> i64 {
+        let mut reds: Vec<i32> = Vec::new();
+        let mut greens: Vec<i32> = Vec::new();
+        let mut blues: Vec<i32> = Vec::new();
+
+        let turns: Vec<&str> = turns.split(';').collect();
+
+        for turn in turns {
+            let game = Self::build(turn);
+            reds.push(game.red_count);
+            greens.push(game.green_count);
+            blues.push(game.blue_count);
+        }
+
+        let max_red = reds.iter().max().unwrap();
+        let max_green = greens.iter().max().unwrap();
+        let max_blue = blues.iter().max().unwrap();
+
+        (max_red * max_green * max_blue).into()
+    }
 }
